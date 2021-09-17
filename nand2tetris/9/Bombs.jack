@@ -1,0 +1,70 @@
+class Bombs {
+
+    field Bomb bomb1, bomb2, bomb3, bomb4, bomb5, bomb6, bomb7, bomb8, bomb9, bomb10;
+    field int sumPoints;
+    constructor Bombs new(){
+            let bomb1 = Bomb.new(233, 25, 1);
+            let bomb2 = Bomb.new(250, -20, 2);
+            let bomb3 = Bomb.new(267, 25, 3);
+            let bomb4 = Bomb.new(233, -110, 1);
+            let bomb5 = Bomb.new(250, -65, 2);
+            let bomb6 = Bomb.new(267, -110, 3);
+            let bomb7 = Bomb.new(233, -200, 1);
+            let bomb8 = Bomb.new(250, -155, 2);
+            let bomb9 = Bomb.new(267, -200, 3);
+            let bomb10 = Bomb.new(250, -245, 2);
+            let sumPoints = 0;
+            return this;
+    }
+
+    method void dispose() {
+        do bomb1.dispose();
+        do bomb2.dispose();
+        do bomb3.dispose();
+        do bomb4.dispose();
+        do bomb5.dispose();
+        do bomb6.dispose();
+        do bomb7.dispose();
+        do bomb8.dispose();
+        do bomb9.dispose();
+        do bomb10.dispose();
+        do Memory.deAlloc(this);
+        return;
+     }
+
+    method int run(int statusCar){ 
+        var int a, b, c, d, e, f, g, h, i, j;
+        do bomb1.moveDown();
+        let a = bomb1.isMishap(statusCar); 
+        do bomb2.moveDown();
+        let b = bomb2.isMishap(statusCar);
+        do bomb3.moveDown();
+        let c = bomb3.isMishap(statusCar);  
+        do bomb4.moveDown();
+        let d = bomb4.isMishap(statusCar); 
+        do bomb5.moveDown();
+        let f = bomb5.isMishap(statusCar);
+        do bomb6.moveDown();
+        let e = bomb6.isMishap(statusCar);  
+        do bomb7.moveDown();
+        let g = bomb7.isMishap(statusCar); 
+        do bomb8.moveDown();
+        let h = bomb8.isMishap(statusCar);  
+        do bomb9.moveDown();
+        let i = bomb9.isMishap(statusCar);
+        do bomb10.moveDown();
+        let j = bomb10.isMishap(statusCar);
+
+        
+        do Output.moveCursor(9,3);
+        do Output.printInt(sumPoints);
+        do Output.printString(" points");
+        let sumPoints = sumPoints + 1;
+        
+        
+        if ( (a=1) | (b = 1) | (c = 1) | (d=1) | (e = 1) | (f=1) | (g=1) | (h=1) | (i=1) | (j=1)) {  
+            return 1;}
+        else {return 0;}       
+    }
+
+}

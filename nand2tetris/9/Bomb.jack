@@ -1,0 +1,68 @@
+class Bomb {
+
+    field int x, y;
+    field int status; //In which column the bomb
+    field int state; //Did he get stuck in the car
+   
+    constructor Bomb new(int Ax, int Ay, int line){
+        let x = Ax;
+        let y = Ay;
+        let status = line;
+        let state = 0;
+        do draw();
+        return this;
+    }
+
+    method void dispose()
+    {
+        do Memory.deAlloc(this);
+        return;
+    }
+
+    method void draw(){
+        if (y > 0){
+        do Screen.setColor(true);
+        do Screen.drawRectangle(x, y, x + 5, y + 10);
+        do Screen.drawRectangle(x + 5, y + 5, x + 10, y + 15);
+        do Screen.drawRectangle(x + 10, y , x + 15, y + 10);
+    }
+        return;
+    }
+    
+    method void erase(){
+        if (y > 0){
+        do Screen.setColor(false);
+        do Screen.drawRectangle(x, y, x + 5, y + 10);
+        do Screen.drawRectangle(x + 5, y + 5, x + 10, y + 15);
+        do Screen.drawRectangle(x + 10, y , x + 15, y + 10);
+        }
+        return;
+    }
+
+    method void moveDown() {
+        if (y < 232) {
+           do erase();
+           let y = y + 10;
+           do draw();
+        }
+        else {
+            do erase();
+            let y = -70;
+            let state = 0;
+        }
+        return;
+     }
+
+    method int isMishap(int statusCar){
+        if ((statusCar = status) & (y > 229) & (state = 0)){  
+            do Output.moveCursor(22,20);
+            do Output.printString("Crash!");
+            do Sys.wait(200);
+            do Output.moveCursor(22,20);
+            let state = 1;
+            do Output.printString("       ");
+            return 1;}
+        else { return 0;}
+    }
+
+}

@@ -1,0 +1,24 @@
+==========
+ Car Game
+==========
+
+The goal of this game is to keep your car from crashing with the cars coming from the opposite path,
+by moving your car by pressing the left and the right arrows.
+You have 3 lives so you can crash 4 times and then the game over.
+
+The program listens, and responds, to the following key-pressing events:
+​
+---Right-arrow: moves the car to the right;
+---Left-arrow:  moves the car to the left;
+---Up-arrow: increase the game speed ;
+---Down-arrow: decrease the game speed;
+---Space: pause the game;
+---Enter: continue;
+
+In the side of the board:
+
+you can see all the sum of your points and how many lives left.
+
+Enjoy the game 😊😊😊
+ 
+

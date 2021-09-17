@@ -1,0 +1,30 @@
+class Board {
+    field int right, left;
+    constructor Board new(){
+        let right = 285;
+        let left = 230;
+        do draw();
+        return this;
+    }
+
+    method void dispose() {
+        do Memory.deAlloc(this);
+        return;
+     }
+
+    method void draw(){
+        //draw the road
+        do Screen.setColor(true);
+        do Screen.drawLine(left, 0, left, 255);
+        do Screen.drawLine(right, 0, right, 255);
+        do Screen.drawLine(left - 2, 0, left -2, 255);
+        do Screen.drawLine(right + 2, 0, right + 2, 255);
+        //draws a frame for game details 
+        do Screen.drawRectangle(0,80,140, 82);
+        do Screen.drawLine(140,82,120, 115);
+        do Screen.drawLine(120,115,140, 152);
+        do Screen.drawRectangle(0,150,140, 152);
+        return;
+    }
+
+}

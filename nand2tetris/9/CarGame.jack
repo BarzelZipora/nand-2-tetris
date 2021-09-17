@@ -1,0 +1,100 @@
+class CarGame {
+    field Car mainCar;
+    field Bombs bombs, bombs2;
+    field Board board;
+    field boolean exit;
+    field int duration, live;
+  
+   
+    constructor CarGame new(){ 
+        let board = Board.new();
+        let mainCar = Car.new(250,245);
+        let bombs = Bombs.new();
+        let exit = false;
+        let duration = 80;
+        let live = 3;  
+        return this;
+    }
+
+    method void dispose() {
+        do mainCar.dispose();
+        do bombs.dispose();
+        do board.dispose();
+        do Memory.deAlloc(this);
+        return;
+     }
+
+    method void run() {
+        var char key;
+        var boolean run;
+        var int flag;
+        let run = true;
+        
+        while (~exit) {
+           
+            while (~run) {
+
+                while (key = 0) {
+                    let key = Keyboard.keyPressed();
+                }
+
+                if (key = 128) { let run = true;}
+
+                while (~(key = 0)) {
+                    let key = Keyboard.keyPressed();
+                   }
+            }
+
+            while (run) {
+                do Output.moveCursor(11,2);
+                do Output.printString("Stay live: ");
+                do Output.printInt(live);
+                
+                // waits for a key to be pressed
+                while (key = 0) {     
+                    let key = Keyboard.keyPressed();
+                    do Sys.wait(duration);
+                    let flag = bombs.run(mainCar.getStatusCar());
+                    do mainCar.draw();
+                    let key = Keyboard.keyPressed();
+                    do Sys.wait(duration);
+
+                    if (flag = 1 ){
+                        let live = live - 1; 
+                        do Output.moveCursor(11,2);
+                        do Output.printString("Stay live: ");
+                        do Output.printInt(live);
+
+                        if (live < 0 ){
+                         let exit = true;
+                         let run = false;
+                         let key = 1;
+                         do Output.moveCursor(11,2);
+                         do Output.printString("Game Over!   ");
+                        }
+                    }
+                }
+                if (key = 130) { do mainCar.moveLeft();}   // left arrow
+                if (key = 132) { do mainCar.moveRight(); }   // right arrow
+                if ((key = 131) & (duration > 10)) { let duration = duration - 10; }   // up arrow
+                if (key = 133) { let duration = duration + 10; } // down arrow
+                if (key = 32) { let run = false;}   // pause the game - 
+
+                // waits for the key to be released
+                while (~(key = 0) & (run)) { 
+                    let key = Keyboard.keyPressed();
+                }  
+                
+            } 
+           
+       } // while
+       do Screen.setColor(true);
+       do Screen.drawCircle(250,110, 100);
+       do Screen.setColor(false);
+       do Screen.drawCircle(250,110, 50);
+       do Output.moveCursor(10,27);
+       do Output.printString("Game Over!");
+       return;
+    }
+    
+}

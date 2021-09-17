@@ -1,0 +1,81 @@
+class Car {
+    field int x ,y;
+    field int statusCar;
+
+
+    constructor Car new(int Ax, int Ay) {
+        let x = Ax;
+        let y = Ay;
+        let statusCar = 2;
+        do draw();
+        
+        return this;
+    }
+
+    method void dispose()
+    {
+        do Memory.deAlloc(this);
+        return;
+    }
+
+
+   method void draw() {
+      do Screen.setColor(true);
+      do Screen.drawRectangle(x, y, x + 5, y + 10);
+      do Screen.drawRectangle(x + 5, y - 5, x + 10, y + 5);
+      do Screen.drawRectangle(x + 10, y , x + 15, y + 10);
+      return;
+   }
+
+ 
+   method void erase() {
+      do Screen.setColor(false);
+      do Screen.drawRectangle(x, y, x + 5, y + 10);
+      do Screen.drawRectangle(x + 5, y - 5, x + 10, y + 5);
+      do Screen.drawRectangle(x + 10, y , x + 15, y + 10);
+      return;
+   }
+
+
+   method void moveLeft() {
+      if (x - 16 > 231) {
+        // do Screen.setColor(false);
+        do erase();
+        // do Screen.drawRectangle(x, y, x + 5, y + 10);
+        // do Screen.drawRectangle(x + 5, y - 5, x + 10, y + 5);
+        // do Screen.drawRectangle(x + 10, y , x + 15, y + 10);
+        let x = x - 17;
+        // do Screen.setColor(true);
+        do draw();
+        // do Screen.drawRectangle(x, y, x + 5, y + 10);
+        // do Screen.drawRectangle(x + 5, y - 5, x + 10, y + 5);
+        // do Screen.drawRectangle(x + 10, y , x + 15, y + 10);
+
+        let statusCar = statusCar - 1;
+      }
+      return;
+   }
+
+
+    method void moveRight() {
+      if ((x + 16) < 269) {
+        // do Screen.setColor(false);
+        do erase();
+        // do Screen.drawRectangle(x, y, x + 5, y + 10);
+        // do Screen.drawRectangle(x + 5, y - 5, x + 10, y + 5);
+        // do Screen.drawRectangle(x + 10, y , x + 15, y + 10);
+        let x = x + 17;
+        do draw();
+        // do Screen.setColor(true);
+        // do Screen.drawRectangle(x, y, x + 5, y + 10);
+        // do Screen.drawRectangle(x + 5, y - 5, x + 10, y + 5);
+        // do Screen.drawRectangle(x + 10, y , x + 15, y + 10);
+        let statusCar = statusCar + 1;
+      }
+      return;
+    }
+
+    method int getStatusCar(){
+      return statusCar;
+    }
+}
